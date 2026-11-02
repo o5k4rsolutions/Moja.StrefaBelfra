@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
 <title>Moja Strefa Belfra</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Fraunces:wght@600;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
@@ -76,7 +76,33 @@ table{width:100%;border-collapse:collapse;font-size:13px}th{font-size:11px;text-
 #tb{position:fixed;top:0;left:0;right:0;height:3px;z-index:60;overflow:hidden;opacity:0;transition:opacity .3s}#tb.on{opacity:1}#tb::after{content:"";position:absolute;top:0;height:100%;width:40%;background:var(--or);border-radius:9px;animation:bar 1s ease-in-out infinite}
 #modal:not([hidden]){animation:fade .25s;backdrop-filter:blur(4px)}#modal:not([hidden]) #mb{animation:pop .35s var(--ease)}
 #toast{position:fixed;left:50%;bottom:24px;z-index:90;background:var(--fg);color:#fff;padding:12px 22px;border-radius:999px;font-weight:600;font-size:14px;opacity:0;visibility:hidden;transform:translate(-50%,30px);transition:all .4s var(--ease)}#toast.on{opacity:1;visibility:visible;transform:translate(-50%,0)}#toast.e{background:var(--er)}
-@media(max-width:860px){.top{inset:auto 0 0 0;width:auto;flex-direction:row;padding:6px 8px calc(6px + env(safe-area-inset-bottom));border-right:0;border-top:1px solid var(--line);gap:0}.lg{display:none}nav{flex-direction:row;justify-content:space-around;gap:0}nav a{flex-direction:column;gap:2px;font-size:10px;padding:6px 4px;flex:1;text-align:center}.lkb{display:none}.lo span{display:none}.lo{padding:8px 10px}main{margin-left:0;padding:20px 16px 100px}.hero{padding:26px 22px}#toast{bottom:84px}}
+/* v3 wydawnictwo */
+:root{--bg:#FAF7F2;--line:#E8E1D6;--fs:Fraunces,Georgia,serif}
+.top{position:sticky;inset:auto;top:0;width:auto;flex-direction:row;align-items:center;gap:28px;padding:12px clamp(16px,4vw,48px);background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border:0;border-bottom:1px solid var(--line)}
+.lg img{margin:0;height:38px}
+nav{flex-direction:row;justify-content:center;gap:4px;overflow-x:auto;scrollbar-width:none}nav::-webkit-scrollbar{display:none}
+nav a{padding:10px 16px;border-radius:0;border-bottom:3px solid transparent;white-space:nowrap}nav a .ic{width:18px;height:18px}
+nav a:hover:not(.on){background:none;color:var(--fg)}nav a.on{background:none;border-color:var(--or);color:var(--fg)}
+.lo{border-radius:10px;padding:9px 14px}
+main{margin:0 auto;max-width:1180px;padding:40px clamp(16px,4vw,40px) 90px}
+h1,h2{font-family:var(--fs);font-weight:800;letter-spacing:-.01em}h2{font-size:22px;margin:42px 0 14px}
+.card,.tile,.fil,.warn{border-radius:14px}.btn{border-radius:10px}.chip{border-radius:10px}.pill,.tag{border-radius:6px}
+.hero{border-radius:18px;padding:44px 40px}.hero h1{font-size:clamp(30px,5vw,48px);margin:6px 0 14px}
+.ey{display:block;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:11px;color:var(--or);margin-bottom:6px}
+.tbr{display:flex;gap:10px;margin-bottom:14px;align-items:center}.tbr input{flex:1}.chip svg{width:14px;height:14px;vertical-align:-2px;margin-right:4px}.chip em{font-style:normal;opacity:.6;margin-left:6px;font-size:11px}
+.mg{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:34px 24px}.mg>p{grid-column:1/-1}
+.bk{display:flex;flex-direction:column;gap:14px}.bk h3{font:600 15px/1.35 Poppins,sans-serif;margin:0}.bk .ma{padding:0}
+.cov{position:relative;aspect-ratio:3/4.1;border-radius:4px 12px 12px 4px;color:#fff;padding:20px 18px;display:flex;flex-direction:column;overflow:hidden;cursor:pointer;box-shadow:inset 9px 0 0 rgba(0,0,0,.18),0 16px 30px -10px rgba(20,33,61,.45);transition:transform .35s var(--ease),box-shadow .35s}
+.bk:hover .cov{transform:translateY(-6px) rotate(-1deg);box-shadow:inset 9px 0 0 rgba(0,0,0,.18),0 28px 40px -12px rgba(20,33,61,.5)}
+.cov::before{content:"";position:absolute;right:-40px;top:-40px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.14)}
+.cov::after{content:"";position:absolute;left:-30px;bottom:44px;width:120px;height:120px;border-radius:50%;border:18px solid rgba(255,255,255,.1)}
+.cov>*{position:relative;z-index:1}.cb{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.cn{font-family:var(--fs);font-weight:800;font-size:78px;line-height:1;margin:auto 0 4px}.cs{font-family:var(--fs);font-weight:600;font-size:17px;line-height:1.2}
+.ct{margin-top:10px;align-self:flex-start;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.2);padding:4px 10px;border-radius:4px}
+.new{position:absolute;z-index:2;top:16px;right:-36px;transform:rotate(40deg);background:var(--or);color:var(--fg);font-size:10px;font-weight:800;padding:3px 42px;letter-spacing:.08em}
+.star{position:absolute;z-index:3;right:12px;bottom:12px;width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.2);color:#fff;display:grid;place-items:center;cursor:pointer;transition:transform .2s,background .2s}.star:hover{transform:scale(1.12);background:rgba(255,255,255,.35)}.star svg{width:18px;height:18px}.star.on{background:#fff;color:var(--or)}.star.on svg{fill:currentColor}
+.pdfov{position:fixed;inset:0;z-index:120;background:var(--bg);display:grid;place-content:center;justify-items:center;gap:10px;font-weight:600;color:var(--mu)}
+@media(max-width:860px){.top{flex-wrap:wrap;gap:8px 16px;padding:10px 16px}nav{order:3;width:100%;justify-content:flex-start}.lo{margin-left:auto}.lo span{display:none}main{padding:24px 16px 80px}.hero{padding:30px 22px}.cn{font-size:60px}.mg{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:26px 14px}#toast{bottom:24px}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style></head><body>
 <header class="top"><a class="lg" href="https://strefabelfra.pages.dev"><img src="https://strefabelfra.pages.dev/themes/logo-kolor.svg" alt="Strefa Belfra"></a><nav id="nav"></nav><button class="lo" id="out"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h4M16 8l4 4-4 4M20 12H9"/></svg><span>Wyloguj</span></button></header>
@@ -94,11 +120,15 @@ const TYPES=["Sprawdzian","Kartkówka","Karta pracy","Scenariusz lekcji"],CLS=[1
 const MAIL="cok_moja@strefabelfra.int.pl";
 let me,user,SCH,R,ob,U=[];
 const ic=d=>`<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
-const IC={pulpit:'<path d="M3 11l9-8 9 8v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>',gen:'<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>',klub:'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5M9 7h6"/>',forum:'<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/>',ustawienia:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/>',admin:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>',lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',check:'<path d="M5 12l5 5 9-10"/>',x:'<path d="M6 6l12 12M18 6L6 18"/>',back:'<path d="M19 12H5M11 6l-6 6 6 6"/>'};
+const IC={pulpit:'<path d="M3 11l9-8 9 8v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>',gen:'<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>',klub:'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5M9 7h6"/>',forum:'<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/>',ustawienia:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/>',admin:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>',lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',check:'<path d="M5 12l5 5 9-10"/>',x:'<path d="M6 6l12 12M18 6L6 18"/>',back:'<path d="M19 12H5M11 6l-6 6 6 6"/>',star:'<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>'};
 const av=n=>`<span class="av">${esc((n||"?")[0])}</span>`,sc=x=>"c"+(Math.max(0,SUBJ.indexOf(x))%6),XB=`<button class="xb" data-act="close">${ic(IC.x)}</button>`;
 const thr=t=>`<a class="card th" href="#/forum/${t.id}">${av(t.author_name)}<div><b>${esc(t.title)}</b><small>${esc(t.author_name)} · ${when(t.created_at)}</small></div></a>`;
 const dlg=(m,inp,def)=>new Promise(r=>{const o=document.createElement("div");o.className="dg";o.innerHTML=`<div class="dgb"><p>${esc(m)}</p>${inp?`<input value="${esc(def||"")}">`:""}<div class="dga"><button class="btn o s" data-x="0">Anuluj</button><button class="btn s" data-x="1">OK</button></div></div>`;document.body.append(o);const i=o.querySelector("input");i&&i.focus();const f=v=>{o.classList.add("out");setTimeout(()=>o.remove(),200);r(v)};o.onclick=e=>{const x=e.target.dataset.x;if(x==="1")f(i?i.value:true);else if(x==="0"||e.target===o)f(i?null:false)};if(i)i.onkeydown=e=>{if(e.key==="Enter")f(i.value);if(e.key==="Escape")f(null)}});
 const C=m=>dlg(m),P=(m,d)=>dlg(m,1,d),toastE=t=>toast(t,1);
+const SY=(()=>{const d=new Date(),y=d.getMonth()>=8?d.getFullYear():d.getFullYear()-1;return y+"/"+(y+1)})();
+const mine=()=>me.role==="admin"?SUBJ:(ok()?(me.subjects||[]):[]);
+const fav=()=>{try{return new Set(JSON.parse(localStorage.getItem("fav"+user.id)||"[]"))}catch{return new Set}};
+const LOGO=`<svg style="width:230px;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 120"><path d="M60 90C50 83 38 82 24 86V104C38 100 50 100 60 106Z" fill="#4CBB6A"/><path d="M60 90C70 83 82 82 96 86V104C82 100 70 100 60 106Z" fill="#2E9A52"/><path d="M30 92C38 90 46 91 54 94M30 97C38 95 46 96 54 99M66 94C74 91 82 90 90 92M66 99C74 96 82 95 90 97" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" fill="none" opacity=".85"/><path d="M32 38L29 17L47 28Z M88 38L91 17L73 28Z" fill="#14213D"/><path d="M60 22C40 22 28 36 28 54C28 73 41 87 60 87C79 87 92 73 92 54C92 36 80 22 60 22Z" fill="#14213D"/><ellipse cx="60" cy="74" rx="17" ry="11" fill="#2B3F6E"/><circle cx="47" cy="48" r="12" fill="#FFFFFF" stroke="#FF7A1A" stroke-width="3.5"/><circle cx="73" cy="48" r="12" fill="#FFFFFF" stroke="#FF7A1A" stroke-width="3.5"/><circle cx="48.5" cy="49" r="5.5" fill="#14213D"/><circle cx="71.5" cy="49" r="5.5" fill="#14213D"/><path d="M55 57H65L60 67Z" fill="#FF7A1A" stroke="#FF7A1A" stroke-width="2" stroke-linejoin="round"/><g transform="rotate(-8 12 58)"><rect x="2" y="44" width="21" height="27" rx="3" fill="#FFFFFF" stroke="#14213D" stroke-width="2.5"/><path d="M6 51l2.5 2.5L13 49M6 59l2.5 2.5L13 57" stroke="#FF7A1A" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 51H20M16 59H20M6 66H20" stroke="#14213D" stroke-width="2" stroke-linecap="round"/></g><circle cx="104" cy="34" r="8.5" fill="#FFB066" stroke="#FF7A1A" stroke-width="2.5"/><path d="M101 44.5H107M102 48H106" stroke="#14213D" stroke-width="2.4" stroke-linecap="round"/><path d="M104 18V21M92 24l2 2M116 24l-2 2M117 34h3" stroke="#FF7A1A" stroke-width="2.4" stroke-linecap="round"/><path d="M100 92H114M104 98H116" stroke="#FF7A1A" stroke-width="2.4" stroke-linecap="round"/><path d="M136.60 64.98H147.88Q148.13 67.39 149.56 68.66Q150.98 69.94 153.28 69.94Q155.63 69.94 157.00 68.85Q158.36 67.77 158.36 65.84Q158.36 64.23 157.28 63.18Q156.19 62.12 154.61 61.44Q153.03 60.76 150.12 59.89Q145.90 58.59 143.23 57.29Q140.57 55.98 138.65 53.44Q136.72 50.90 136.72 46.81Q136.72 40.73 141.13 37.29Q145.53 33.85 152.6 33.85Q159.79 33.85 164.19 37.29Q168.59 40.73 168.90 46.87H157.43Q157.31 44.76 155.88 43.55Q154.46 42.35 152.22 42.35Q150.30 42.35 149.12 43.37Q147.95 44.39 147.95 46.31Q147.95 48.42 149.93 49.60Q151.91 50.78 156.13 52.14Q160.35 53.57 162.98 54.87Q165.62 56.17 167.54 58.65Q169.46 61.13 169.46 65.04Q169.46 68.76 167.57 71.8Q165.68 74.83 162.08 76.63Q158.49 78.43 153.59 78.43Q148.81 78.43 145.03 76.88Q141.25 75.33 138.99 72.29Q136.72 69.25 136.60 64.98ZM195.75 69.01V78.0H190.36Q184.59 78.0 181.37 75.17Q178.14 72.35 178.14 65.97V52.20H173.93V43.40H178.14V34.97H188.75V43.40H195.69V52.20H188.75V66.09Q188.75 67.64 189.49 68.32Q190.23 69.01 191.97 69.01ZM223.59 43.03V54.25H220.68Q216.71 54.25 214.73 55.95Q212.74 57.66 212.74 61.94V78.0H202.14V43.40H212.74V49.17Q214.60 46.31 217.39 44.67Q220.18 43.03 223.59 43.03ZM261.60 63.24H237.61Q237.86 66.46 239.69 68.17Q241.51 69.87 244.18 69.87Q248.15 69.87 249.70 66.53H260.98Q260.12 69.94 257.85 72.66Q255.59 75.39 252.18 76.94Q248.77 78.49 244.55 78.49Q239.47 78.49 235.50 76.32Q231.53 74.15 229.30 70.12Q227.07 66.09 227.07 60.70Q227.07 55.30 229.27 51.27Q231.47 47.24 235.44 45.07Q239.41 42.90 244.55 42.90Q249.57 42.90 253.48 45.01Q257.39 47.12 259.59 51.03Q261.79 54.93 261.79 60.14Q261.79 61.63 261.60 63.24ZM250.94 57.35Q250.94 54.62 249.08 53.01Q247.22 51.40 244.43 51.40Q241.76 51.40 239.93 52.95Q238.10 54.50 237.67 57.35ZM285.23 52.20H279.53V78.0H268.92V52.20H265.08V43.40H268.92V42.41Q268.92 36.02 272.58 32.70Q276.24 29.39 283.31 29.39Q284.48 29.39 285.04 29.45V38.44Q282.01 38.25 280.77 39.31Q279.53 40.36 279.53 43.09V43.40H285.23ZM303.83 42.90Q307.49 42.90 310.25 44.39Q313.01 45.88 314.50 48.30V43.40H325.10V78.0H314.50V73.10Q312.95 75.52 310.19 77.00Q307.43 78.49 303.77 78.49Q299.55 78.49 296.08 76.29Q292.61 74.09 290.60 70.03Q288.58 65.97 288.58 60.64Q288.58 55.30 290.60 51.27Q292.61 47.24 296.08 45.07Q299.55 42.90 303.83 42.90ZM306.93 52.14Q303.77 52.14 301.57 54.40Q299.37 56.67 299.37 60.64Q299.37 64.60 301.57 66.93Q303.77 69.25 306.93 69.25Q310.09 69.25 312.30 66.96Q314.50 64.67 314.50 60.70Q314.50 56.73 312.30 54.44Q310.09 52.14 306.93 52.14Z" fill="#14213D"/><path d="M385.37 66.15Q385.37 71.61 381.55 74.80Q377.74 78.0 370.92 78.0H350.65V34.47H370.24Q376.87 34.47 380.62 37.51Q384.38 40.55 384.38 45.76Q384.38 49.60 382.36 52.14Q380.35 54.68 377.00 55.68Q380.78 56.48 383.07 59.43Q385.37 62.37 385.37 66.15ZM361.25 52.08H368.19Q370.80 52.08 372.19 50.93Q373.59 49.79 373.59 47.55Q373.59 45.32 372.19 44.14Q370.80 42.97 368.19 42.97H361.25ZM374.64 64.73Q374.64 62.43 373.12 61.13Q371.60 59.83 368.94 59.83H361.25V69.44H369.06Q371.73 69.44 373.18 68.23Q374.64 67.02 374.64 64.73ZM424.43 63.24H400.44Q400.69 66.46 402.51 68.17Q404.34 69.87 407.01 69.87Q410.98 69.87 412.53 66.53H423.81Q422.94 69.94 420.68 72.66Q418.42 75.39 415.01 76.94Q411.60 78.49 407.38 78.49Q402.30 78.49 398.33 76.32Q394.36 74.15 392.13 70.12Q389.90 66.09 389.90 60.70Q389.90 55.30 392.10 51.27Q394.30 47.24 398.27 45.07Q402.24 42.90 407.38 42.90Q412.40 42.90 416.31 45.01Q420.22 47.12 422.42 51.03Q424.62 54.93 424.62 60.14Q424.62 61.63 424.43 63.24ZM413.77 57.35Q413.77 54.62 411.91 53.01Q410.05 51.40 407.26 51.40Q404.59 51.40 402.76 52.95Q400.93 54.50 400.50 57.35ZM441.30 32.12V78.0H430.70V32.12ZM466.85 52.20H461.14V78.0H450.54V52.20H446.70V43.40H450.54V42.41Q450.54 36.02 454.20 32.70Q457.86 29.39 464.93 29.39Q466.10 29.39 466.66 29.45V38.44Q463.62 38.25 462.38 39.31Q461.14 40.36 461.14 43.09V43.40H466.85ZM493.76 43.03V54.25H490.85Q486.88 54.25 484.89 55.95Q482.91 57.66 482.91 61.94V78.0H472.31V43.40H482.91V49.17Q484.77 46.31 487.56 44.67Q490.35 43.03 493.76 43.03ZM512.49 42.90Q516.15 42.90 518.90 44.39Q521.66 45.88 523.15 48.30V43.40H533.75V78.0H523.15V73.10Q521.60 75.52 518.84 77.00Q516.08 78.49 512.43 78.49Q508.21 78.49 504.74 76.29Q501.27 74.09 499.25 70.03Q497.24 65.97 497.24 60.64Q497.24 55.30 499.25 51.27Q501.27 47.24 504.74 45.07Q508.21 42.90 512.49 42.90ZM515.59 52.14Q512.43 52.14 510.22 54.40Q508.02 56.67 508.02 60.64Q508.02 64.60 510.22 66.93Q512.43 69.25 515.59 69.25Q518.75 69.25 520.95 66.96Q523.15 64.67 523.15 60.70Q523.15 56.73 520.95 54.44Q518.75 52.14 515.59 52.14Z" fill="#FF7A1A"/><path d="M514.1 39.3V23.3M507.1 30.3L514.1 22.3L521.1 30.3" stroke="#FF7A1A" stroke-width="3.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 const norm=t=>String(t).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/ł/g,"l");
 const SK='<div class="sk"></div>'.repeat(4),tbar=o=>$("#tb").classList.toggle("on",!!o),toast=(t,e)=>{const o=$("#toast");o.textContent=t;o.className="on"+(e?" e":"");clearTimeout(toast.t);toast.t=setTimeout(()=>o.className="",2800)};
 let leaving=0;const logout=async()=>{leaving=1;try{await sb.auth.signOut()}catch{}location.replace(LOGIN_URL+"/?r=out")};
@@ -126,7 +156,7 @@ async function boot(){
   if(!session)return location.replace(LOGIN_URL);
   user=session.user;await loadMe();
   sb.auth.onAuthStateChange(ev=>{if(ev==="SIGNED_OUT"&&!leaving)location.replace(LOGIN_URL+"/?r=out")});
-  addEventListener("hashchange",route);await route();hide();if(!me.onboarded&&me.role!=="admin")onboard();
+  addEventListener("hashchange",route);await route();hide();if(me.role!=="admin"&&(!me.onboarded||me.decl_year!==SY))onboard();
  }catch(e){hide();app(`<div class="card"><p class="err">Nie udało się wczytać konta: ${esc(e.message)}</p><button class="btn" data-act="out">Wyloguj i spróbuj ponownie</button></div>`)}
 }
 async function loadMe(){const {data,error}=await sb.from("profiles").select("*").eq("id",user.id).single();if(error)throw error;me=data}
@@ -145,11 +175,14 @@ async function route(){
 
 /* PULPIT */
 async function vPulpit(){
- let th=[],rp=[];
+ let th=[],rp=[],nw=[];
  if(ok())th=(await sb.from("threads").select("id,title,author_name,created_at").order("created_at",{ascending:false}).limit(5)).data||[];
+ if(ok()&&mine().length)nw=(await sb.from("materials").select("id,title,subject,class,type").in("subject",mine()).order("created_at",{ascending:false}).limit(4)).data||[];
  rp=(await sb.from("reports").select("*").eq("reporter",user.id).not("reply","is",null).order("created_at",{ascending:false}).limit(3)).data||[];
- app(`<section class="hero"><div><small>Moja Strefa</small><h1>Cześć, ${esc(me.first_name)}!</h1><p>${ok()?`<span class="pill g">${ic(IC.check)}Konto zweryfikowane</span>`:"Dokończ weryfikację konta, aby odblokować materiały."}</p></div></section>${ok()?"":banner()}
+ app(`<section class="hero"><div><small>Moja Strefa · rok szkolny ${SY}</small><h1>Cześć, ${esc(me.first_name)}!</h1><p>${ok()?`<span class="pill g">${ic(IC.check)}Konto zweryfikowane</span>`:"Dokończ weryfikację konta, aby odblokować materiały."}</p></div></section>${ok()?"":banner()}
  <div class="grid"><a class="tile" href="${GEN_URL}"><i class="tic a">${ic(IC.gen)}</i><b>Generator testów</b><small>${GEN_URL==="#"?"wkrótce":"przejdź do platformy"}</small></a><a class="tile" href="#/klub"><i class="tic b">${ic(IC.klub)}</i><b>Klub Nauczyciela</b><small>sprawdziany, karty pracy, scenariusze</small></a><a class="tile" href="#/forum"><i class="tic c">${ic(IC.forum)}</i><b>Forum</b><small>rozmowy nauczycieli</small></a></div>
+ ${me.role==="admin"?"":`<h2>Twoje przedmioty</h2><div class="card">${mine().length?mine().map(x=>`<span class="tag">${esc(x)}</span>`).join(""):`<span class="mu">Brak zweryfikowanych przedmiotów.</span>`} ${me.onboarded&&me.decl_year!==SY?`<button class="btn s" data-act="ob">Złóż deklarację</button>`:""}</div>`}
+ ${nw.length?`<h2>Nowości w Klubie</h2>${nw.map(m=>`<a class="card th" href="#/klub"><span class="av">${esc((m.class.match(/\d+/)||["•"])[0])}</span><div><b>${esc(m.title)}</b><small>${esc(m.subject)} · ${esc(m.type)}</small></div></a>`).join("")}`:""}
  ${ok()?`<h2>Ostatnie wątki na forum</h2>${th.map(thr).join("")||"<p class='mu'>Brak wątków.</p>"}`:""}
  ${rp.length?`<h2>Odpowiedzi na Twoje zgłoszenia</h2>${rp.map(r=>`<div class="card"><small>${esc(r.label)}</small><br>${esc(r.reply)}</div>`).join("")}`:""}`);
 }
@@ -166,42 +199,60 @@ async function loadSchools(){
 }
 function onboard(step=1){
  ob=ob||{school:me.school,subjects:[...(me.subjects||[])]};
- const x=me.onboarded||me.role==="admin"?`<button class="xb" data-act="close" style="float:right">${ic(IC.x)}</button>`:"";
- if(step===1)modal(`${x}<h2>Witaj w Strefie Belfra!</h2><p>Wybierz swoją placówkę.</p>${ob.school?`<div class="card"><b>${esc(ob.school.n)}</b><br><small>${esc(addr(ob.school))}, woj. ${esc(ob.school.w)}</small><br><button class="link" data-act="resch">Zmień</button></div>`:`<input id="q" style="width:100%" placeholder="Wpisz nazwę, miejscowość lub ulicę…"><div id="res"></div>`}<p><button class="btn" data-act="ob2" ${ob.school?"":"disabled"}>Dalej</button></p>`);
- if(step===2)modal(`${x}<h2>Jakich przedmiotów uczysz?</h2>${SUBJ.map(s=>`<label class="chk"><input type="checkbox" data-sub="${s}" ${ob.subjects.includes(s)?"checked":""}>${s}</label>`).join("")}<p><button class="btn o" data-act="ob">${ic(IC.back)} Wstecz</button> <button class="btn" data-act="save">Zapisz</button></p>`);
- if(step===3)modal(`<h2>Dziękujemy!</h2><div class="warn"><b>Musimy zweryfikować Twoje dane!</b><p>Aby uzyskać dostęp do materiałów, prześlij skan lub wyraźne zdjęcie podbitego i podpisanego oświadczenia na adres <a href="mailto:${MAIL}">${MAIL}</a><br>Odpowiemy w ciągu 5 dni roboczych.</p><button class="btn" data-act="pdf">Pobierz oświadczenie</button></div><button class="btn o" data-act="close">Przejdź do pulpitu</button>`);
+ const x=(me.onboarded&&me.decl_year===SY)||me.role==="admin"?`<button class="xb" data-act="close" style="float:right">${ic(IC.x)}</button>`:"";
+ if(step===1)modal(`${x}<h2>${me.onboarded?`Rok szkolny ${SY}`:"Witaj w Strefie Belfra!"}</h2><p>${me.onboarded?"Potwierdź placówkę, w której uczysz w tym roku szkolnym.":"Wybierz swoją placówkę."}</p>${ob.school?`<div class="card"><b>${esc(ob.school.n)}</b><br><small>${esc(addr(ob.school))}, woj. ${esc(ob.school.w)}</small><br><button class="link" data-act="resch">Zmień</button></div>`:`<input id="q" style="width:100%" placeholder="Wpisz nazwę, miejscowość lub ulicę…"><div id="res"></div>`}<p><button class="btn" data-act="ob2" ${ob.school?"":"disabled"}>Dalej</button></p>`);
+ if(step===2)modal(`${x}<h2>Jakich przedmiotów uczysz w roku ${SY}?</h2><p class="mu">Klub Nauczyciela odblokuje materiały tylko z tych przedmiotów.</p>${SUBJ.map(s=>`<label class="chk"><input type="checkbox" data-sub="${s}" ${ob.subjects.includes(s)?"checked":""}>${s}</label>`).join("")}<p><button class="btn o" data-act="ob">${ic(IC.back)} Wstecz</button> <button class="btn" data-act="save">Zapisz</button></p>`);
+ if(step===3)modal(ok()?`<h2>Deklaracja zapisana</h2><p>Twoje przedmioty na rok szkolny ${SY} zostały zapisane. Nie musisz ponownie wysyłać oświadczenia – konto jest już zweryfikowane.</p><button class="btn" data-act="close">Przejdź do Klubu</button>`:`<h2>Dziękujemy!</h2><div class="warn"><b>Musimy zweryfikować Twoje dane!</b><p>Aby uzyskać dostęp do materiałów, prześlij skan lub wyraźne zdjęcie podbitego i podpisanego oświadczenia na adres <a href="mailto:${MAIL}">${MAIL}</a><br>Odpowiemy w ciągu 5 dni roboczych.</p><button class="btn" data-act="pdf">Pobierz oświadczenie</button></div><button class="btn o" data-act="close">Przejdź do pulpitu</button>`);
 }
 /* PDF */
 async function makePdf(){
  const s=me.school||{},L=(a,b)=>`<p style="margin:3px 0"><b>${a}</b> ${esc(b)}</p>`,H=t=>`<h3 style="font-size:15px;margin:16px 0 4px;border-bottom:1px solid #000;padding-bottom:3px">${t}</h3>`;
- const el=document.createElement("div");el.style.cssText="position:fixed;left:-9999px;top:0;width:794px;padding:46px 56px;background:#fff;color:#000;font:13.5px/1.5 Arial,sans-serif";
- el.innerHTML=`<div style="text-align:center"><img src="${SITE}/themes/logo-kolor.png" crossorigin="anonymous" style="width:230px"></div><h2 style="text-align:center;margin:16px 0 18px;font-size:20px">Oświadczenie nauczyciela</h2>
+ const ov=document.createElement("div");ov.className="pdfov";ov.innerHTML='<div class="spin"></div>Generuję oświadczenie…';
+ const el=document.createElement("div");el.style.cssText="position:fixed;left:0;top:0;z-index:100;width:794px;padding:46px 56px;background:#fff;color:#000;font:13.5px/1.5 Arial,sans-serif";
+ el.innerHTML=`<div style="text-align:center">${LOGO}</div><h2 style="text-align:center;margin:16px 0 4px;font:700 20px Arial,sans-serif">Oświadczenie nauczyciela</h2><p style="text-align:center;margin:0 0 14px">Rok szkolny ${SY}</p>
  ${H("Dane osobowe")}${L("Imię i nazwisko:",name())}${L("Email:",me.email)}${L("ID użytkownika:",me.id)}
- ${H("Adres szkoły")}${L("Nazwa placówki:",s.n)}${L("Adres:",`${street(s)}, ${s.k||""} ${s.c||s.m}`)}${L("Województwo:",s.w)}
+ ${H("Adres szkoły")}${L("Nazwa placówki:",s.n)}${L("Adres:",`${street(s)}, ${s.k||""} ${s.c||s.m||""}`)}${L("Województwo:",s.w)}
  ${H("Nauczane przedmioty")}<p style="margin:3px 0">${esc((me.subjects||[]).join(", "))}</p>
  <p style="margin-top:20px">Oświadczam, że podane przeze mnie dane są zgodne z prawdą, oraz upoważniam zespół Strefa Belfra do zweryfikowania autentyczności załączonego zaświadczenia we wskazanej instytucji.</p>
  <p style="margin:26px 0 0">Data: ............................</p>
  <table style="width:100%;margin-top:14px;border-collapse:collapse;text-align:center"><tr>
- <td style="width:34%;height:110px;vertical-align:bottom">.............................<br><small>Podpis nauczyciela</small></td>
- <td style="width:34%;vertical-align:bottom">.............................<br><small>Podpis Dyrektora placówki</small></td>
- <td style="vertical-align:bottom"><div style="border:1px dashed #000;height:95px;margin-bottom:4px"></div><small>Pieczątka placówki</small></td></tr></table>
+ <td style="width:34%;height:110px;vertical-align:bottom;border:0">.............................<br><small>Podpis nauczyciela</small></td>
+ <td style="width:34%;vertical-align:bottom;border:0">.............................<br><small>Podpis Dyrektora placówki</small></td>
+ <td style="vertical-align:bottom;border:0"><div style="border:1px dashed #000;height:95px;margin-bottom:4px"></div><small>Pieczątka placówki</small></td></tr></table>
  <p style="margin-top:26px;font-size:11px;text-align:center">Szczegółowe informacje dotyczące przetwarzania danych osobowych znajdują się pod adresem: ${SITE}/polityka-prywatnosci.</p>`;
- document.body.append(el);
- await Promise.all([...el.querySelectorAll("img")].map(i=>i.complete?1:new Promise(r=>i.onload=i.onerror=r)));
- const d=new window.jspdf.jsPDF({unit:"pt",format:"a4"});
- await new Promise(r=>d.html(el,{callback:r,x:0,y:0,width:595,windowWidth:794,html2canvas:{useCORS:true,scale:2}}));
- el.remove();d.save("oswiadczenie-strefa-belfra.pdf");
+ document.body.append(el,ov);
+ try{
+  await new Promise(r=>setTimeout(r,150));
+  const cv=await window.html2canvas(el,{scale:2,backgroundColor:"#fff",logging:false,scrollX:0,scrollY:0});
+  const d=new window.jspdf.jsPDF({unit:"pt",format:"a4"}),W=d.internal.pageSize.getWidth(),PH=d.internal.pageSize.getHeight(),h=cv.height*W/cv.width,img=cv.toDataURL("image/jpeg",.95);
+  for(let y=0;y<h-1;y+=PH){if(y)d.addPage();d.addImage(img,"JPEG",0,-y,W,h)}
+  d.save("oswiadczenie-strefa-belfra.pdf");
+ }finally{el.remove();ov.remove()}
 }
 
 /* KLUB */
-const F={s:"",c:"",t:""};
-async function vKlub(){
- const sel=(k,l,a)=>`<div class="chips"><span class="cl">${l}</span>${a.map(x=>`<button class="chip ${F[k]===x?"on":""}" data-k="${k}" data-v="${esc(x)}">${esc(x.replace("Klasa ","Kl. "))}</button>`).join("")}</div>`;
- app(`<div class="ph"><h1>Klub Nauczyciela</h1><p class="mu">Gotowe materiały od nauczycieli – wybierz filtry i otwórz podgląd.</p></div><div class="fil">${sel("s","Przedmiot",SUBJ)}${sel("c","Klasa",CLS)}${sel("t","Rodzaj",TYPES)}</div><div id="list" class="mg">${SK}</div>`);
- let q=sb.from("materials").select("*").order("created_at",{ascending:false}).limit(100);
- if(F.s)q=q.eq("subject",F.s);if(F.c)q=q.eq("class",F.c);if(F.t)q=q.eq("type",F.t);
- const {data,error}=await q;if(error)throw error;
- $("#list").innerHTML=data.map(m=>`<article class="mat"><div class="mtop ${sc(m.subject)}">${ic(IC.gen)}<span>${esc(m.type)}</span></div><div class="mb"><b>${esc(m.title)}</b><span class="tag">${esc(m.subject)}</span><span class="tag">${esc(m.class)}</span></div><div class="ma"><button class="btn s" data-act="prev" data-key="${esc(m.file_key)}" data-name="${esc(m.title)}">Podgląd</button><button class="btn s o" data-act="report" data-kind="material" data-ref="${m.id}" data-label="Materiał: ${esc(m.title)}" data-link="#/klub">Zgłoś problem</button></div></article>`).join("")||"<p class='mu'>Brak materiałów dla wybranych filtrów.</p>";
+const F={s:"",c:"",t:"",q:"",f:""};let MAT=null;
+async function vKlub(re){
+ if(!MAT||!re){const {data,error}=await sb.from("materials").select("*").order("created_at",{ascending:false}).limit(1000);if(error)throw error;MAT=data}
+ const mi=mine();
+ if(!mi.length)return app(`<div class="ph"><h1>Klub Nauczyciela</h1></div><div class="card"><b>Brak odblokowanych przedmiotów</b><p class="mu">Klub pokazuje materiały tylko z przedmiotów, które zadeklarowałeś i które zostały zweryfikowane.</p><a class="btn s" href="#/ustawienia">Uzupełnij deklarację</a></div>`);
+ const base=MAT.filter(m=>mi.includes(m.subject));
+ if(F.s&&!mi.includes(F.s))F.s="";
+ const bs=F.s?base.filter(m=>m.subject===F.s):base,cl=CLS.filter(c=>bs.some(m=>m.class===c));
+ if(F.c&&!cl.includes(F.c))F.c="";
+ const bc=F.c?bs.filter(m=>m.class===F.c):bs,tp=TYPES.filter(t=>bc.some(m=>m.type===t));
+ if(F.t&&!tp.includes(F.t))F.t="";
+ const chips=(k,l,a,cnt)=>`<div class="chips"><span class="cl">${l}</span>${a.map(x=>`<button class="chip ${F[k]===x?"on":""}" data-k="${k}" data-v="${esc(x)}">${esc(x.replace("Klasa ","Kl. "))}${cnt?`<em>${cnt(x)}</em>`:""}</button>`).join("")}</div>`;
+ app(`<div class="ph"><small class="ey">Rok szkolny ${SY}</small><h1>Klub Nauczyciela</h1><p class="mu">Materiały z Twoich przedmiotów – sprawdziany, karty pracy i scenariusze.</p></div>
+ <div class="tbr"><input id="ks" type="search" placeholder="Szukaj w tytułach…" value="${esc(F.q||"")}"><button class="chip ${F.f?"on":""}" data-k="f" data-v="1">${ic(IC.star)}Ulubione</button></div>
+ <div class="fil">${chips("s","Przedmiot",mi,x=>base.filter(m=>m.subject===x).length)}${cl.length?chips("c","Klasa",cl):""}${tp.length?chips("t","Rodzaj",tp):""}</div><div id="list" class="mg"></div>`);
+ klubGrid();
+}
+function klubGrid(){
+ const mi=mine(),fv=fav(),q=norm(F.q||"");
+ const d=MAT.filter(m=>mi.includes(m.subject)&&(!F.s||m.subject===F.s)&&(!F.c||m.class===F.c)&&(!F.t||m.type===F.t)&&(!F.f||fv.has(String(m.id)))&&(!q||norm(m.title).includes(q)));
+ $("#list").innerHTML=d.map(m=>{const n=(m.class.match(/\d+/)||[""])[0],nw=Date.now()-new Date(m.created_at)<12096e5,k=`data-key="${esc(m.file_key)}" data-name="${esc(m.title)}"`;
+  return `<article class="bk"><div class="cov ${sc(m.subject)}" data-act="prev" ${k}>${nw?'<span class="new">NOWE</span>':""}<span class="cb">Strefa Belfra</span><span class="cn">${esc(n)}</span><span class="cs">${esc(m.subject)}</span><span class="ct">${esc(m.type)}</span><button class="star ${fv.has(String(m.id))?"on":""}" data-act="fav" data-id="${m.id}" aria-label="Ulubione">${ic(IC.star)}</button></div><h3>${esc(m.title)}</h3><div class="ma"><button class="btn s" data-act="prev" ${k}>Podgląd</button><button class="btn s o" data-act="report" data-kind="material" data-ref="${m.id}" data-label="Materiał: ${esc(m.title)}" data-link="#/klub">Zgłoś</button></div></article>`}).join("")||"<p class='mu'>Brak materiałów dla wybranych filtrów.</p>";
 }
 async function preview(b){
  modal('<div class="spin"></div><p class="mu" style="text-align:center">Ładowanie podglądu…</p>',1);
@@ -228,7 +279,7 @@ async function vThread(id){
 /* USTAWIENIA */
 async function vUst(){
  app(`<h1>Ustawienia</h1><div class="card"><form data-form="name" class="bar"><input name="f" value="${esc(me.first_name)}" required placeholder="Imię"><input name="l" value="${esc(me.last_name)}" required placeholder="Nazwisko"><button class="btn">Zapisz imię i nazwisko</button></form><p><b>E-mail:</b> ${esc(me.email)}<br><b>ID użytkownika:</b> <small>${me.id}</small></p></div>
- <div class="card"><b>Placówka:</b> ${me.school?esc(me.school.n)+" – "+esc(addr(me.school)):"—"}<br><b>Przedmioty:</b> ${esc((me.subjects||[]).join(", ")||"—")}<p><button class="btn o" data-act="ob">Zmień placówkę i przedmioty</button> <button class="btn o" data-act="pdf" ${me.onboarded?"":"disabled"}>Pobierz oświadczenie</button></p></div>
+ <div class="card"><b>Placówka:</b> ${me.school?esc(me.school.n)+" – "+esc(addr(me.school)):"—"}<br><b>Przedmioty:</b> ${esc((me.subjects||[]).join(", ")||"—")}<br><b>Deklaracja na rok ${SY}:</b> ${me.decl_year===SY?"złożona":"wymagana"}<p><button class="btn o" data-act="ob">Zmień placówkę i przedmioty</button> <button class="btn o" data-act="pdf" ${me.onboarded?"":"disabled"}>Pobierz oświadczenie</button></p></div>
  <div class="card"><form data-form="pw" class="bar"><input type="password" name="p" minlength="8" required placeholder="Nowe hasło (min. 8 znaków)"><button class="btn">Zmień hasło</button></form></div>${ok()?"":banner()}`);
 }
 
@@ -252,7 +303,7 @@ async function vAdmin(sub="users"){
 }
 function usersTbl(q){
  q=q.toLowerCase();
- $("#ut").innerHTML=`<tr><th>Imię i nazwisko</th><th>E-mail</th><th>Rola</th><th>Nauczyciel</th><th>Akcje</th></tr>`+U.filter(u=>(u.first_name+u.last_name+u.email).toLowerCase().includes(q)).map(u=>`<tr><td>${esc(u.first_name)} ${esc(u.last_name)}</td><td>${esc(u.email)}</td><td>${u.role}</td><td>${u.verified?`<span class="pill g">tak</span>`:"—"}</td><td>
+ $("#ut").innerHTML=`<tr><th>Imię i nazwisko</th><th>E-mail</th><th>Rola</th><th>Przedmioty</th><th>Nauczyciel</th><th>Akcje</th></tr>`+U.filter(u=>(u.first_name+u.last_name+u.email).toLowerCase().includes(q)).map(u=>`<tr><td>${esc(u.first_name)} ${esc(u.last_name)}</td><td>${esc(u.email)}</td><td>${u.role}</td><td><small>${esc((u.subjects||[]).join(", ")||"—")}<br>${esc(u.decl_year||"")}</small></td><td>${u.verified?`<span class="pill g">tak</span>`:"—"}</td><td>
  <button class="btn s o" data-act="uv" data-id="${u.id}">${u.verified?"Odbierz upr.":"Nadaj upr."}</button> <button class="btn s o" data-act="ur" data-id="${u.id}">${u.role==="admin"?"→ user":"→ admin"}</button> <button class="btn s o" data-act="un" data-id="${u.id}">Imię/nazwisko</button> <button class="btn s o" data-act="ue" data-id="${u.id}">E-mail</button> <button class="btn s o" data-act="up" data-id="${u.id}">Hasło</button> <button class="btn s d" data-act="ud" data-id="${u.id}">Usuń</button></td></tr>`).join("");
 }
 const adm=(u,p)=>sb.rpc("admin_update_profile",{uid:u.id,f:p.f??u.first_name,l:p.l??u.last_name,r:p.r??u.role,v:p.v??u.verified}).then(({error})=>{if(error)throw error;return vAdmin("users")});
@@ -260,11 +311,11 @@ const gu=b=>U.find(u=>u.id===b.dataset.id);
 
 /* ZDARZENIA */
 const acts={
- out:logout,close,pdf:()=>makePdf().catch(e=>toastE("Nie udało się wygenerować PDF: "+e.message)),ob:()=>onboard(1),ob2:()=>onboard(2),
+ fav:b=>{const f=fav(),i=b.dataset.id;f.has(i)?f.delete(i):f.add(i);try{localStorage.setItem("fav"+user.id,JSON.stringify([...f]))}catch{}klubGrid()},out:logout,close,pdf:()=>makePdf().catch(e=>toastE("Nie udało się wygenerować PDF: "+e.message)),ob:()=>onboard(1),ob2:()=>onboard(2),
  resch:()=>{ob.school=null;onboard(1)},prev:b=>preview(b).catch(e=>modal(`<p class="err">Błąd podglądu: ${esc(e.message)}</p><button class="btn" data-act="close">OK</button>`)),
  pick:b=>{const {s,...x}=R[b.dataset.i];ob.school=x;onboard(1)},report,nt:()=>$("#nt").hidden=false,
  save:async()=>{if(!ob.subjects.length)return toastE("Wybierz co najmniej jeden przedmiot.");
-  const {error}=await sb.from("profiles").update({school:ob.school,subjects:ob.subjects,onboarded:true}).eq("id",user.id);if(error)return toastE(error.message);
+  const {error}=await sb.from("profiles").update({school:ob.school,subjects:ob.subjects,onboarded:true,decl_year:SY}).eq("id",user.id);if(error)return toastE(error.message);
   await loadMe();ob=null;nav("pulpit");onboard(3);route()},
  del:async b=>{if(!await C("Usunąć?"))return;await sb.from(b.dataset.tbl).delete().eq("id",b.dataset.id);location.hash=b.dataset.tbl==="threads"?"#/forum":"#/forum/"+location.hash.split("/")[2];route()},
  uv:b=>{const u=gu(b);adm(u,{v:!u.verified})},ur:async b=>{const u=gu(b);if(await C("Zmienić rolę?"))adm(u,{r:u.role==="admin"?"user":"admin"})},
@@ -289,12 +340,13 @@ const forms={
   const {error}=await sb.from("materials").insert({title:f.title.value.trim(),subject:f.subject.value,class:f.cls.value,type:f.type.value,file_key:key,file_name:file.name,created_by:user.id});if(error)throw error;vAdmin("materials")
   }catch(e){st.innerHTML=`<span class="err">${esc(e.message)}</span>`}}
 };
-document.addEventListener("click",e=>{const ch=e.target.closest(".chip");if(ch){F[ch.dataset.k]=F[ch.dataset.k]===ch.dataset.v?"":ch.dataset.v;return void vKlub()}const b=e.target.closest("[data-act]");if(!b)return;const r=acts[b.dataset.act]?.(b);if(r?.then&&b.classList.contains("btn")){b.classList.add("ld");r.finally(()=>b.classList.remove("ld"))}});
+document.addEventListener("click",e=>{const ch=e.target.closest(".chip");if(ch){F[ch.dataset.k]=F[ch.dataset.k]===ch.dataset.v?"":ch.dataset.v;return void vKlub(1)}const b=e.target.closest("[data-act]");if(!b)return;const r=acts[b.dataset.act]?.(b);if(r?.then&&b.classList.contains("btn")){b.classList.add("ld");r.finally(()=>b.classList.remove("ld"))}});
 document.addEventListener("submit",e=>{const f=e.target;if(f.dataset.form){e.preventDefault();const r=forms[f.dataset.form]?.(f),bt=f.querySelector(".btn");if(r?.then&&bt){bt.classList.add("ld");r.finally(()=>bt.classList.remove("ld"))}}});
 document.addEventListener("change",e=>{const t=e.target;
  if(t.dataset.k){F[t.dataset.k]=t.value;vKlub()}
  if(t.dataset.sub){ob.subjects=t.checked?[...ob.subjects,t.dataset.sub]:ob.subjects.filter(x=>x!==t.dataset.sub)}});
 document.addEventListener("input",async e=>{
+ if(e.target.id==="ks"){F.q=e.target.value;return klubGrid()}
  if(e.target.id==="us")usersTbl(e.target.value);
  if(e.target.id!=="q")return;
  const v=norm(e.target.value).trim(),res=$("#res");
