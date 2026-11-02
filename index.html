@@ -80,6 +80,30 @@ table{width:100%;border-collapse:collapse;font-size:13px}th{font-size:12px;color
 @media(max-width:1100px){:root{--sw:68px}#sb .lg,nav a span,.lo span,.lkb{display:none}nav a,.lo{justify-content:center;padding:12px}#sb{padding:18px 8px}.fg{grid-template-columns:1fr 1fr}}
 @media(max-width:700px){#sb{inset:auto 8px 8px 8px;width:auto;flex-direction:row;padding:6px;border-radius:22px;box-shadow:0 8px 30px rgba(20,33,61,.18)}nav{flex-direction:row;justify-content:space-around}nav a,.lo{padding:10px 12px}.mn{margin:0;padding:8px 12px 100px}.usr b{display:none}.usr{padding:4px}.fg{grid-template-columns:1fr}.pn{padding:20px 16px}.mr{flex-wrap:wrap}.mx{width:100%;justify-content:flex-end}#toast{bottom:90px}.hero{padding:24px 20px}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* v4: wygląd spójny z Klubem */
+:root{--bg:#F2F4F9;--line:#E1E6F0}
+@media(min-width:701px){#sb{inset:0 auto 0 0;width:var(--sw);border-radius:0;border-right:1px solid var(--line);box-shadow:none}.mn{margin-left:var(--sw);padding:6px 40px 80px;max-width:1280px}}
+nav a{border-radius:10px}nav a.on{background:var(--fg);color:#fff}nav a.on .ic{color:var(--or)}
+.pn{border-radius:16px;border:1px solid var(--line)}.card{border-radius:14px;border:1px solid var(--line)}
+.btn,input,select{border-radius:10px}textarea{border-radius:12px}.ib,.usr,.av{border-radius:12px}.usr{border:1px solid var(--line)}
+.tabs{border-radius:12px;border:1px solid var(--line);padding:4px}.tab{border-radius:9px}.tab.on{background:var(--fg);color:#fff}
+.hero{border-radius:16px}.tile{border-radius:16px;border:1px solid var(--line)}.tic{border-radius:12px}.pill,.tag,.tp{border-radius:7px}.warn{border-radius:16px}
+.kh .sx{display:block}.kh .sx input{width:100%;padding:14px 16px 14px 46px;font-size:15px;border-radius:12px}
+.kf,.kt,.rt{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.kt{justify-content:space-between}
+#list{gap:10px;margin-top:0}
+.mr{position:relative;border-radius:14px;padding:14px 18px 14px 20px;gap:14px;background:#fff;overflow:hidden}
+.mr::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--c)}
+.mr.t0{--c:var(--or)}.mr.t1{--c:var(--bl)}.mr.t2{--c:var(--gr)}.mr.t3{--c:#8B4FD6}
+.cn{width:52px;height:56px;border-radius:12px;background:color-mix(in srgb,var(--c) 14%,#fff);color:var(--c);display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;line-height:1}.cn b{font-size:24px}.cn small{font-size:10px;color:inherit;opacity:.85}
+.mc h3{margin:0 0 6px}.mc .tg{align-items:center}
+.btn.o{border-color:var(--line);color:var(--fg)}.btn.o:hover{border-color:var(--fg);background:#fff}
+.drop{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;border:2px dashed #C5CCDD;border-radius:14px;padding:34px 20px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:12px}.drop:hover,.drop.on{border-color:var(--or);background:#FFFAF5}.drop input{position:absolute;opacity:0;width:1px;height:1px}
+.fi{display:flex;justify-content:space-between;gap:12px;padding:8px 12px;border-radius:10px;background:var(--bg);margin:6px 0;font-size:13px}.fi small{color:inherit}.fi.okk{background:#E3F5EA;color:#1F6E3A}.fi.bad{background:#FDECEA;color:var(--er)}
+.st{display:grid;grid-template-columns:300px 1fr;gap:16px;align-items:start}.pc{text-align:center;padding:30px 22px}.pc h2{margin-bottom:2px}
+.av.big{width:84px;height:84px;font-size:34px;margin:0 auto 14px;border-radius:22px;background:var(--fg);color:#fff}
+.sec h2{font-size:17px}.sec .mu.d{margin:2px 0 16px}.fr{display:grid;grid-template-columns:1fr 1fr;gap:14px}.sec p{margin:14px 0 0}
+@media(max-width:900px){.st,.fr{grid-template-columns:1fr}}
 </style></head><body>
 <aside id="sb"><a class="lg" href="https://strefabelfra.pages.dev"><img src="https://strefabelfra.pages.dev/themes/logo-kolor.svg" alt="Strefa Belfra"></a><nav id="nav"></nav><button class="lo" id="out" aria-label="Wyloguj"></button></aside>
 <div class="mn"><header class="hd"><h1 id="pt"></h1><div class="hr"><button class="ib" id="bell" aria-label="Powiadomienia"></button><a class="usr" href="#/ustawienia" id="usr"></a></div></header><main id="app"></main></div>
@@ -100,7 +124,7 @@ const IC={pulpit:'<path d="M3 11l9-8 9 8v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-
 const XB=`<button class="xb" data-act="close" aria-label="Zamknij">${ic(IC.x)}</button>`,ini=n=>`<span class="av">${esc((n||"?")[0])}</span>`;
 const thr=t=>`<a class="card th" href="#/forum/${t.id}">${ini(t.author_name)}<div><b>${esc(t.title)}</b><small>${esc(t.author_name)}, ${when(t.created_at)}</small></div></a>`;
 const dlg=(m,inp,def)=>new Promise(r=>{const o=document.createElement("div");o.className="dg";o.innerHTML=`<div class="dgb"><p>${esc(m)}</p>${inp?`<input value="${esc(def||"")}">`:""}<div class="dga"><button class="btn o s" data-x="0">Anuluj</button><button class="btn s" data-x="1">OK</button></div></div>`;document.body.append(o);const i=o.querySelector("input");i&&i.focus();const f=v=>{o.classList.add("out");setTimeout(()=>o.remove(),200);r(v)};o.onclick=e=>{const x=e.target.dataset.x;if(x==="1")f(i?i.value:true);else if(x==="0"||e.target===o)f(i?null:false)};if(i)i.onkeydown=e=>{if(e.key==="Enter")f(i.value);if(e.key==="Escape")f(null)}});
-const C=m=>dlg(m),P=(m,d)=>dlg(m,1,d),toastE=t=>toast(t,1);
+const C=m=>dlg(m),P=(m,d)=>dlg(m,1,d),toastE=t=>toast(/permission denied/i.test(t)?"Baza odmówiła zapisu (brak uprawnień). To błąd konfiguracji – daj znać administratorowi.":t,1);
 const SY=(()=>{const d=new Date(),y=d.getMonth()>=8?d.getFullYear():d.getFullYear()-1;return y+"/"+(y+1)})();
 const ok=()=>me.verified||me.role==="admin",name=()=>me.first_name+" "+me.last_name,mine=()=>me.role==="admin"?SUBJ:(ok()?(me.subjects||[]):[]);
 const ls=(k,d)=>{try{return JSON.parse(localStorage.getItem(k+user.id))??d}catch{return d}},ss=(k,v)=>{try{localStorage.setItem(k+user.id,JSON.stringify(v))}catch{}};
@@ -220,19 +244,18 @@ async function makePdf(){
 /* KLUB */
 const F={q:"",s:"",c:"",t:"",o:"new",v:"l",n:20,tab:"s"};let S=new Set;
 const tc=t=>"t"+Math.max(0,TYPES.indexOf(t));
-const row=(m,fv)=>{const k=`data-key="${esc(m.file_key)}" data-name="${esc(m.title)}" data-id="${m.id}"`,nw=Date.now()-new Date(m.created_at)<12096e5;
- return `<article class="mr"><input type="checkbox" data-sel="${m.id}" aria-label="Zaznacz" ${S.has(String(m.id))?"checked":""}><div class="mc"><div class="tg"><span class="tp ${tc(m.type)}">${esc(m.type)}</span><span class="tp">${esc(m.subject)}</span>${nw?'<span class="tp n">Nowe</span>':""}</div><h3>${esc(m.title)}</h3><small class="sm">${esc(m.class)}, ${ext(m.file_key).toUpperCase()}, dodano ${day(m.created_at)}</small></div>
+const row=(m,fv)=>{const k=`data-key="${esc(m.file_key)}" data-name="${esc(m.title)}" data-id="${m.id}"`,nw=Date.now()-new Date(m.created_at)<12096e5,n=(m.class.match(/\d+/)||["•"])[0];
+ return `<article class="mr ${tc(m.type)}"><input type="checkbox" data-sel="${m.id}" aria-label="Zaznacz" ${S.has(String(m.id))?"checked":""}><span class="cn"><b>${esc(n)}</b><small>klasa</small></span><div class="mc"><h3>${esc(m.title)}</h3><div class="tg"><span class="tp ${tc(m.type)}">${esc(m.type)}</span><span class="tp">${esc(m.subject)}</span>${nw?'<span class="tp n">Nowe</span>':""}<small class="sm">${ext(m.file_key).toUpperCase()}, ${day(m.created_at)}</small></div></div>
  <div class="mx"><button class="ib hf ${fv.has(String(m.id))?"on":""}" data-act="fav" data-id="${m.id}" aria-label="Ulubione" title="Ulubione">${ic(IC.heart)}</button><button class="btn o s" data-act="prev" ${k}>${ic(IC.eye)}Zobacz</button><button class="btn s" data-act="dl" ${k}>${ic(IC.dl)}Pobierz</button><button class="ib" data-act="report" data-kind="material" data-ref="${m.id}" data-label="Materiał: ${esc(m.title)}" data-link="#/klub" aria-label="Zgłoś problem" title="Zgłoś problem">${ic(IC.flag)}</button></div></article>`};
+let VIS=[];
 async function vKlub(){
  await loadMat();const mi=mine();
  if(!mi.length)return app(`<div class="card"><b>Brak odblokowanych przedmiotów</b><p class="mu">Klub pokazuje materiały tylko z przedmiotów, które zadeklarowałeś i które zostały zweryfikowane.</p><a class="btn s" href="#/ustawienia">Uzupełnij deklarację</a></div>`);
- const sel=(k,l,a,all)=>`<label class="f">${l}<select data-k="${k}"><option value="">${all}</option>${a.map(x=>`<option ${F[k]===x?"selected":""}>${esc(x)}</option>`).join("")}</select></label>`;
- app(`<div class="tabs">${[["s","Szukaj"],["r","Ostatnie"],["f","Ulubione"]].map(([k,l])=>`<button class="tab ${F.tab===k?"on":""}" data-tab="${k}">${l}</button>`).join("")}</div>
- <section class="pn"><div class="ph2"><h2>Wyszukiwarka i filtry</h2><button class="link" data-act="clr">Wyczyść wszystkie</button></div>
- <div class="fg"><label class="f">Szukaj<span class="sx">${ic(IC.search)}<input id="ks" type="search" placeholder="Wpisz tytuł materiału" value="${esc(F.q)}"></span></label>${sel("s","Przedmiot",mi,"Wszystkie przedmioty")}${sel("c","Klasa",CLS,"Wszystkie")}${sel("t","Rodzaj",TYPES,"Wszystkie")}</div></section>
- <section class="pn"><div class="ph2"><h2>Dostępne materiały</h2><div class="rt"><label class="rt mu">Sortuj <select data-k="o"><option value="new" ${F.o==="new"?"selected":""}>Od najnowszych</option><option value="old" ${F.o==="old"?"selected":""}>Od najstarszych</option><option value="az" ${F.o==="az"?"selected":""}>Alfabetycznie</option></select></label><button class="btn s" id="dsel" data-act="dsel">${ic(IC.dl)}Pobierz zaznaczone</button></div></div>
- <div class="ph2" style="margin-top:14px"><span class="mu" id="cnt"></span><div class="vt"><button data-v="l" class="${F.v==="l"?"on":""}" aria-label="Lista">${ic(IC.list)}</button><button data-v="g" class="${F.v==="g"?"on":""}" aria-label="Kafelki">${ic(IC.grid)}</button></div></div>
- <div id="list"></div><div id="more" style="text-align:center;margin-top:16px"></div></section>`);
+ const sel=(k,a,all)=>`<select data-k="${k}" aria-label="${all}"><option value="">${all}</option>${a.map(x=>`<option ${F[k]===x?"selected":""}>${esc(x)}</option>`).join("")}</select>`;
+ app(`<div class="kh"><span class="sx">${ic(IC.search)}<input id="ks" type="search" placeholder="Szukaj materiału po tytule (skrót: /)" value="${esc(F.q)}"></span></div>
+ <div class="kf">${sel("s",mi,"Wszystkie przedmioty")}${sel("c",CLS,"Wszystkie klasy")}${sel("t",TYPES,"Wszystkie rodzaje")}<select data-k="o" aria-label="Sortuj"><option value="new" ${F.o==="new"?"selected":""}>Od najnowszych</option><option value="old" ${F.o==="old"?"selected":""}>Od najstarszych</option><option value="az" ${F.o==="az"?"selected":""}>Alfabetycznie</option></select><button class="link" data-act="clr">Wyczyść filtry</button></div>
+ <div class="kt"><div class="tabs">${[["s","Wszystkie"],["r","Ostatnio otwarte"],["f","Ulubione"]].map(([k,l])=>`<button class="tab ${F.tab===k?"on":""}" data-tab="${k}">${l}</button>`).join("")}</div><div class="rt"><span class="mu sm" id="cnt"></span><button class="btn o s" data-act="all">Zaznacz widoczne</button><button class="btn s" id="dsel" data-act="dsel">${ic(IC.dl)}Pobierz zaznaczone</button><div class="vt"><button data-v="l" class="${F.v==="l"?"on":""}" aria-label="Lista">${ic(IC.list)}</button><button data-v="g" class="${F.v==="g"?"on":""}" aria-label="Kafelki">${ic(IC.grid)}</button></div></div></div>
+ <div id="list"></div><div id="more" style="text-align:center"></div>`);
  klubList();
 }
 function klubList(){
@@ -241,7 +264,7 @@ function klubList(){
  if(F.tab==="f")d=d.filter(m=>fv.has(String(m.id)));
  if(F.tab==="r")d=rc.map(id=>d.find(m=>String(m.id)===id)).filter(Boolean);
  else d=[...d].sort(F.o==="az"?(a,b)=>a.title.localeCompare(b.title,"pl"):F.o==="old"?(a,b)=>new Date(a.created_at)-new Date(b.created_at):(a,b)=>new Date(b.created_at)-new Date(a.created_at));
- $("#cnt").textContent="Wyniki wyszukiwania: "+d.length;$("#list").className=F.v==="g"?"g":"";
+ VIS=d.slice(0,F.n);$("#cnt").textContent="Wyniki: "+d.length;$("#list").className=F.v==="g"?"g":"";
  $("#list").innerHTML=d.slice(0,F.n).map(m=>row(m,fv)).join("")||`<div class="empty">${F.tab==="f"?"Nie masz jeszcze ulubionych. Kliknij serce przy materiale.":F.tab==="r"?"Tu pojawią się materiały, które ostatnio otworzyłeś.":"Brak materiałów dla wybranych filtrów."}</div>`;
  $("#more").innerHTML=d.length>F.n?`<button class="btn o" data-act="more">Pokaż więcej (${d.length-F.n})</button>`:"";
  selUi();
@@ -272,9 +295,12 @@ async function vThread(id){
 
 /* USTAWIENIA */
 async function vUst(){
- app(`${ok()?"":banner()}<div class="pn"><h2>Dane konta</h2><form data-form="name" class="bar" style="margin:14px 0"><input name="f" value="${esc(me.first_name)}" required placeholder="Imię"><input name="l" value="${esc(me.last_name)}" required placeholder="Nazwisko"><button class="btn">Zapisz</button></form><p class="sm" style="margin:0"><b>E-mail:</b> ${esc(me.email)}<br><b>ID użytkownika:</b> <small>${me.id}</small></p></div>
- <div class="pn"><h2>Placówka i przedmioty</h2><p><b>Placówka:</b> ${me.school?esc(me.school.n)+", "+esc(addr(me.school)):"brak"}<br><b>Przedmioty:</b> ${esc((me.subjects||[]).join(", ")||"brak")}<br><b>Deklaracja na rok ${SY}:</b> ${me.decl_year===SY?"złożona":"wymagana"}</p><div class="bar"><button class="btn o" data-act="ob">Zmień placówkę i przedmioty</button><button class="btn o" data-act="pdf" ${me.onboarded?"":"disabled"}>${ic(IC.dl)}Pobierz oświadczenie</button></div></div>
- <div class="pn"><h2>Hasło</h2><form data-form="pw" class="bar" style="margin-top:14px"><input type="password" name="p" minlength="8" required placeholder="Nowe hasło (min. 8 znaków)"><button class="btn">Zmień hasło</button></form></div>`);
+ const sc=me.school,decl=me.decl_year===SY;
+ app(`${ok()?"":banner()}<div class="st"><aside class="pn pc"><span class="av big">${esc((me.first_name||"?")[0])}</span><h2>${esc(name())}</h2><p class="mu sm" style="margin:0 0 14px;word-break:break-all">${esc(me.email)}</p>${ok()?`<span class="pill g">${ic(IC.check)}Konto zweryfikowane</span>`:`<span class="pill r">Czeka na weryfikację</span>`}<p class="mu sm" style="margin:14px 0 0">${me.role==="admin"?"Administrator":"Nauczyciel"}</p></aside>
+ <div style="display:flex;flex-direction:column;gap:16px">
+ <section class="pn sec"><h2>Dane osobowe</h2><p class="mu sm d">Tak podpisujemy Twoje wpisy na forum i oświadczenie.</p><form data-form="name"><div class="fr"><label class="f">Imię<input name="f" value="${esc(me.first_name)}" required></label><label class="f">Nazwisko<input name="l" value="${esc(me.last_name)}" required></label></div><p><button class="btn">Zapisz zmiany</button></p></form></section>
+ <section class="pn sec"><div class="row"><h2>Placówka i przedmioty</h2><span class="pill ${decl?"g":"r"}">Deklaracja ${SY}: ${decl?"złożona":"wymagana"}</span></div><p class="mu sm d"></p>${sc?`<div class="card" style="background:var(--bg)"><b>${esc(sc.n)}</b><br><small>${esc(addr(sc))}, woj. ${esc(sc.w)}</small></div>`:`<p class="mu">Nie wybrano placówki.</p>`}<p>${(me.subjects||[]).map(x=>`<span class="tag">${esc(x)}</span>`).join("")||'<span class="mu">Nie wybrano przedmiotów.</span>'}</p><p class="bar"><button class="btn o" data-act="ob">Zmień placówkę i przedmioty</button><button class="btn o" data-act="pdf" ${me.onboarded?"":"disabled"}>${ic(IC.dl)}Pobierz oświadczenie</button></p></section>
+ <section class="pn sec"><h2>Bezpieczeństwo</h2><p class="mu sm d">Aby ustawić nowe hasło, podaj obecne.</p><form data-form="pw"><div class="fr"><label class="f" style="grid-column:1/-1">Aktualne hasło<input type="password" name="cur" autocomplete="current-password" required></label><label class="f">Nowe hasło (min. 8 znaków)<input type="password" name="p" minlength="8" autocomplete="new-password" required></label><label class="f">Powtórz nowe hasło<input type="password" name="p2" minlength="8" autocomplete="new-password" required></label></div><p><button class="btn">Zmień hasło</button></p></form></section></div></div>`);
 }
 
 /* ADMIN */
@@ -289,7 +315,7 @@ async function vAdmin(sub){
  }
  if(sub==="materials"){
   const {data}=await sb.from("materials").select("*").order("created_at",{ascending:false}).limit(200);
-  app(head+`<form data-form="up" class="pn"><h2>Dodaj materiał do Klubu</h2><div class="bar" style="margin:14px 0"><input name="title" required placeholder="Tytuł"><select name="subject">${opts(SUBJ)}</select><select name="cls">${opts(CLS)}</select><select name="type">${opts(TYPES)}</select><input type="file" name="file" required></div><button class="btn">Wyślij</button> <span id="upst"></span></form>${data.map(m=>`<div class="card row"><span><b>${esc(m.title)}</b> <span class="tag">${esc(m.subject)}</span><span class="tag">${esc(m.class)}</span><span class="tag">${esc(m.type)}</span></span><button class="btn s d" data-act="delmat" data-id="${m.id}" data-key="${esc(m.file_key)}">Usuń</button></div>`).join("")}`);
+  app(head+`<form data-form="up" class="pn"><h2>Dodaj materiały do Klubu</h2><div class="bar" style="margin:14px 0"><select name="subject" aria-label="Przedmiot">${opts(SUBJ)}</select><select name="cls" aria-label="Klasa">${opts(CLS)}</select><select name="type" aria-label="Rodzaj">${opts(TYPES)}</select></div><label class="drop"><input type="file" name="file" multiple>${ic(IC.dl)}<b>Przeciągnij pliki tutaj albo kliknij, by wybrać</b><small>Tytuł powstanie z nazwy pliku. Możesz dodać kilka plików naraz.</small></label><div id="fl"></div><p><button class="btn">Wyślij do Klubu</button></p><div id="upst"></div></form>${data.map(m=>`<div class="card row"><span><b>${esc(m.title)}</b> <span class="tag">${esc(m.subject)}</span><span class="tag">${esc(m.class)}</span><span class="tag">${esc(m.type)}</span></span><button class="btn s d" data-act="delmat" data-id="${m.id}" data-key="${esc(m.file_key)}">Usuń</button></div>`).join("")}`);
  }
  if(sub==="reports"){
   const {data}=await sb.from("reports").select("*").order("created_at",{ascending:false}).limit(200);
@@ -311,7 +337,7 @@ const acts={
  resch:()=>{ob.school=null;onboard(1)},prev:b=>preview(b).catch(e=>modal(`<p class="err">Błąd podglądu: ${esc(e.message)}</p><button class="btn" data-act="close">OK</button>`)),
  dl:b=>dlFile(b.dataset.key,b.dataset.name,b.dataset.id).catch(e=>toastE("Nie udało się pobrać: "+e.message)),
  dsel:async()=>{const l=MAT.filter(m=>S.has(String(m.id)));try{for(const m of l){await dlFile(m.file_key,m.title,m.id);await new Promise(r=>setTimeout(r,500))}toast(`Pobrano plików: ${l.length}`)}catch(e){toastE("Nie udało się pobrać: "+e.message)}},
- more:()=>{F.n+=20;klubList()},clr:()=>{Object.assign(F,{q:"",s:"",c:"",t:"",n:20});vKlub()},
+ more:()=>{F.n+=20;klubList()},all:()=>{const on=VIS.length&&VIS.every(m=>S.has(String(m.id)));VIS.forEach(m=>on?S.delete(String(m.id)):S.add(String(m.id)));klubList()},clr:()=>{Object.assign(F,{q:"",s:"",c:"",t:"",n:20});vKlub()},
  pick:b=>{const {s,...x}=R[b.dataset.i];ob.school=x;onboard(1)},report,nt:()=>$("#nt").hidden=false,
  save:async()=>{if(!ob.subjects.length)return toastE("Wybierz co najmniej jeden przedmiot.");
   const {error}=await sb.from("profiles").update({school:ob.school,subjects:ob.subjects,onboarded:true,decl_year:SY}).eq("id",user.id);if(error)return toastE(error.message);
@@ -331,14 +357,29 @@ const forms={
  nt:async f=>{const {data,error}=await sb.from("threads").insert({title:f.title.value.trim(),body:f.body.value.trim(),author_name:name()}).select("id").single();if(error)return toastE(error.message);location.hash="#/forum/"+data.id},
  reply:async f=>{const {error}=await sb.from("posts").insert({thread_id:f.dataset.id,body:f.body.value.trim(),author_name:name()});if(error)return toastE(error.message);vThread(f.dataset.id)},
  name:async f=>{const {error}=await sb.from("profiles").update({first_name:f.f.value.trim(),last_name:f.l.value.trim()}).eq("id",user.id);if(error)return toastE(error.message);await loadMe();toast("Zapisano")},
- pw:async f=>{const {error}=await sb.auth.updateUser({password:f.p.value});error?toast(error.message,1):toast("Hasło zostało zmienione");if(!error)f.reset()},
- up:async f=>{const st=$("#upst"),file=f.file.files[0],ct=file.type||"application/octet-stream";
-  try{st.textContent="Wysyłanie…";const key=`materialy/${Date.now()}-${file.name.replace(/[^\w.-]+/g,"_")}`;
-  const {url}=await fn("b2",{action:"put",key,contentType:ct});
-  const r=await fetch(url,{method:"PUT",headers:{"Content-Type":ct},body:file});if(!r.ok)throw Error("Backblaze odrzucił plik ("+r.status+")");
-  const {error}=await sb.from("materials").insert({title:f.title.value.trim(),subject:f.subject.value,class:f.cls.value,type:f.type.value,file_key:key,file_name:file.name,created_by:user.id});if(error)throw error;MAT=null;vAdmin()
-  }catch(e){st.innerHTML=`<span class="err">${esc(e.message)}</span>`}}
+ pw:async f=>{const c=f.cur.value,n=f.p.value;
+  if(n!==f.p2.value)return toastE("Nowe hasła nie są takie same.");
+  if(n===c)return toastE("Nowe hasło musi się różnić od obecnego.");
+  const {error:e1}=await sb.auth.signInWithPassword({email:user.email,password:c});if(e1)return toastE("Aktualne hasło jest nieprawidłowe.");
+  const {error}=await sb.auth.updateUser({password:n});if(error)return toastE(error.message);f.reset();toast("Hasło zostało zmienione")},
+ up:async f=>{const files=[...f.file.files],st=$("#upst");if(!files.length)return toastE("Wybierz co najmniej jeden plik.");
+  st.innerHTML=files.map((x,i)=>`<div class="fi" id="u${i}"><span>${esc(x.name)}</span><small>czeka…</small></div>`).join("");let n=0;
+  for(const [i,file] of files.entries()){const el=$("#u"+i),s=t=>el.lastChild.textContent=t,ct=file.type||"application/octet-stream";
+   try{s("przygotowanie…");const key=`materialy/${Date.now()}-${i}-${file.name.replace(/[^\w.-]+/g,"_")}`;let url;
+    try{({url}=await fn("b2",{action:"put",key,contentType:ct}))}catch(e){throw Error("Funkcja b2 odrzuciła żądanie: "+await fe(e))}
+    s("wysyłanie…");let r;try{r=await fetch(url,{method:"PUT",headers:{"Content-Type":ct},body:file})}catch{throw Error("Backblaze zablokował wysyłkę (ustaw CORS bucketa dla tej domeny)")}
+    if(!r.ok)throw Error("Backblaze odrzucił plik ("+r.status+")");
+    s("zapisywanie…");const {error}=await sb.from("materials").insert({title:file.name.replace(/\.[^.]+$/,"").replace(/[_]+/g," "),subject:f.subject.value,class:f.cls.value,type:f.type.value,file_key:key,file_name:file.name,created_by:user.id});
+    if(error)throw Error(error.code==="42501"?"Baza odmówiła zapisu w tabeli materials (brak uprawnień, uruchom SQL naprawczy)":error.message);
+    s("dodano");el.classList.add("okk");n++}catch(e){s(e.message);el.classList.add("bad")}}
+  if(n){MAT=null;toast(`Dodano materiałów: ${n}`)}if(n===files.length)setTimeout(()=>vAdmin(),1800)}
 };
+const fe=async e=>{try{const j=await e.context.json();return j.error||j.message||e.message}catch{return e.message}};
+const showFiles=z=>{$("#fl").innerHTML=[...z.querySelector("input").files].map(x=>`<div class="fi"><span>${esc(x.name)}</span><small>${(x.size/1048576).toFixed(1)} MB</small></div>`).join("")};
+document.addEventListener("dragover",e=>{if(e.target.closest?.(".drop")){e.preventDefault();e.target.closest(".drop").classList.add("on")}});
+document.addEventListener("dragleave",e=>e.target.closest?.(".drop")?.classList.remove("on"));
+document.addEventListener("drop",e=>{const z=e.target.closest?.(".drop");if(z){e.preventDefault();z.classList.remove("on");z.querySelector("input").files=e.dataTransfer.files;showFiles(z)}});
+document.addEventListener("change",e=>{if(e.target.type==="file"&&e.target.closest(".drop"))showFiles(e.target.closest(".drop"))});
 document.addEventListener("click",e=>{
  const tb=e.target.closest("[data-tab]");if(tb){F.tab=tb.dataset.tab;F.n=20;return void vKlub()}
  const vv=e.target.closest("[data-v]");if(vv){F.v=vv.dataset.v;document.querySelectorAll("[data-v]").forEach(x=>x.classList.toggle("on",x===vv));return klubList()}
