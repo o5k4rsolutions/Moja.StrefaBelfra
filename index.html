@@ -65,6 +65,7 @@ const SUBJ=["Język Polski","Matematyka","Przyroda","Biologia","Geografia","Fizy
 const TYPES=["Sprawdzian","Kartkówka","Karta pracy","Scenariusz lekcji"],CLS=[1,2,3,4,5,6,7,8].map(n=>"Klasa "+n);
 const MAIL="cok_moja@strefabelfra.int.pl";
 let me,user,SCH,R,ob,U=[];
+const norm=t=>String(t).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/ł/g,"l");
 const SK='<div class="sk"></div>'.repeat(4),tbar=o=>$("#tb").classList.toggle("on",!!o),toast=(t,e)=>{const o=$("#toast");o.textContent=t;o.className="on"+(e?" e":"");clearTimeout(toast.t);toast.t=setTimeout(()=>o.className="",2800)};
 let leaving=0;const logout=async()=>{leaving=1;try{await sb.auth.signOut()}catch{}location.replace(LOGIN_URL+"/?r=out")};
 const app=h=>{const m=$("#app");m.innerHTML=h;m.querySelectorAll(":scope>*,#list>*,.grid>*").forEach((c,i)=>c.style.animationDelay=Math.min(i,10)*45+"ms")},modal=(h,w)=>{$("#mb").className=w?"w":"";$("#mb").innerHTML=h;$("#modal").hidden=false},close=()=>$("#modal").hidden=true;
@@ -123,8 +124,11 @@ async function vPulpit(){
 async function loadSchools(){
  if(SCH)return;
  const j=await(await fetch("/placowki.json")).json();
- SCH=(j.data||j).map(r=>{const a=Array.isArray(r)?r:null,c=a?null:(r.attributes||r),g=i=>a?a[i-1]:c["col"+i];
-  const o={w:g(3),p:g(5),m:g(9),id:g(15),n:g(20),u:g(21),nr:g(22),l:g(23),k:g(24)};o.s=`${o.n} ${o.m} ${o.u||""} ${o.w}`.toLowerCase();return o});
+ SCH=(j.data||j).map(r=>{let o;
+  if(r&&r.n!==undefined)o={w:r.w,p:r.p,m:r.m,id:r.id,n:r.n,u:r.u,nr:r.nr,l:r.l,k:r.k};
+  else{const a=Array.isArray(r)?r:null,c=a?null:(r.attributes||r),g=i=>{const v=a?a[i-1]:c["col"+i];return v&&typeof v==="object"?(v.repr||v.val||""):(v??"")};
+   o={w:g(3),p:g(5),m:g(9),id:g(15),n:g(20),u:g(21),nr:g(22),l:g(23),k:g(24)}}
+  o.s=norm(`${o.n} ${o.m} ${o.u||""} ${o.k||""} ${o.w}`);return o});
 }
 function onboard(step=1){
  ob=ob||{school:me.school,subjects:[...(me.subjects||[])]};
@@ -259,7 +263,7 @@ document.addEventListener("change",e=>{const t=e.target;
 document.addEventListener("input",async e=>{
  if(e.target.id==="us")usersTbl(e.target.value);
  if(e.target.id!=="q")return;
- const v=e.target.value.toLowerCase().trim(),res=$("#res");
+ const v=norm(e.target.value).trim(),res=$("#res");
  if(v.length<3)return res.innerHTML="<small>Wpisz min. 3 znaki</small>";
  if(!SCH){res.innerHTML="<small>Ładuję listę placówek…</small>";try{await loadSchools()}catch(x){return res.innerHTML=`<span class="err">Nie można wczytać placowki.json</span>`}}
  const t=v.split(/\s+/);R=SCH.filter(s=>t.every(w=>s.s.includes(w))).slice(0,25);
